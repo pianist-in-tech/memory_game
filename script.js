@@ -55,7 +55,6 @@ function createDivsForColors(colorArray) {
     gameContainer.append(newDiv)
 
 } }
-// newDiv.addEventListener("click", handleCardClick);
 
 function handleCardClick(event) {
   let color = event.target.classList.value; 
