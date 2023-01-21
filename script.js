@@ -62,27 +62,33 @@ let clickCounter = 0;
 
 function handleCardClick(event) {
   if (clickCounter === 2) return; 
-  let color = event.target.classList.value; 
-  event.target.style.backgroundColor = color;
 
 //1. user clicks the first time, save the card that was clicked to a variable.
 card1 = event.target; //saving the element itself with all its values
 //2. user clicks again, save that card to another variable
 card2 = event.target;
+let color = event.target.classList.value; 
+  card1.style.backgroundColor = color;
+  card2.style.backgroundColor = color;
 //3. keep track of the number of times the user has clicked on any card. 
 clickCounter ++;
 //4. we want to reset that number of times to 0 after every 2 cards.
 if (clickCounter === 2){
   //evaluate cards
-if (card1 !== card2){
+if (card1 !== card2 && card1.classList !== card2.classList){
   setTimeout(function(){
     clickCounter = 0;
     card1 = null;
     card2 = null;
-  }, 2000);
+    //to reset the color back to default
+    card1.style.backgroundColor = "";
+    card2.style.backgroundColor = "";
+  }, 1000);
 }
+} 
 }
-}
+//if you click on two cards and they have the same class name - they should not reset to null (#4)
+
 
 // when the DOM loads
 createDivsForColors(shuffledColors); 
