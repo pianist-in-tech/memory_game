@@ -77,12 +77,12 @@ if (clickCounter === 2){
   //evaluate cards
 if (card1 !== card2 && card1.classList !== card2.classList){
   setTimeout(function(){
+     //to reset the colors back to default
+     card1.style.backgroundColor = "";
+     card2.style.backgroundColor = "";
     clickCounter = 0;
     card1 = null;
     card2 = null;
-    //to reset the color back to default
-    card1.style.backgroundColor = "";
-    card2.style.backgroundColor = "";
   }, 1000);
 }
 } 
