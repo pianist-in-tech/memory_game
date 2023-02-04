@@ -53,7 +53,6 @@ function createDivsForColors(colorArray) {
     
     // append the div to the element with an id of game
     gameContainer.append(newDiv)
-
 } }
 
 let card1 = null;
@@ -64,29 +63,41 @@ function handleCardClick(event) {
   if (clickCounter === 2) return; 
 
 //1. user clicks the first time, save the card that was clicked to a variable.
-card1 = event.target; //saving the element itself with all its values
-//2. user clicks again, save that card to another variable
-card2 = event.target;
-let color = event.target.classList.value; 
-  card1.style.backgroundColor = color;
-  card2.style.backgroundColor = color;
+if(card1 === null){
+  card1 = event.target;
+} 
+if (card1 !== null && card2 === null && clickCounter === 1){
+  card2 = event.target;}
+  console.log("card1",card1);
+  console.log("card2",card2);
+  event.target.style.backgroundColor = event.target.classList.value; 
 //3. keep track of the number of times the user has clicked on any card. 
 clickCounter ++;
+if (clickCounter !== 2){
+  return;
+}
 //4. we want to reset that number of times to 0 after every 2 cards.
-if (clickCounter === 2){
+if (clickCounter === 2 && card1.classList.value !== card2.classList.value){
   //evaluate cards
-if (card1 !== card2 && card1.classList !== card2.classList){
   setTimeout(function(){
      //to reset the colors back to default
-     card1.style.backgroundColor = "";
-     card2.style.backgroundColor = "";
-    clickCounter = 0;
-    card1 = null;
-    card2 = null;
+     card1.style.backgroundColor = "white";
+     card2.style.backgroundColor = "white";
+     clickCounter = 0;
+     card1 = null;
+     card2 = null;
   }, 1000);
-}
+  
 } 
+else if (clickCounter === 2 && card1.classList.value === card2.classList.value){
+  clickCounter = 0;
+  card1 = null;
+  card2 = null;
+  console.log ('same')
 }
+
+} 
+
 //if you click on two cards and they have the same class name - they should not reset to null (#4)
 
 
